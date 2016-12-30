@@ -88,33 +88,33 @@ install_binaries(){
 source /tmp/release.properties
 yum -y install unzip
 
-unzip  /tmp/bins/$GPDB_VERSION.zip -d /tmp/bins/
-unzip  /tmp/bins/$GPCC_VERSION.zip -d /tmp/bins/
-tar -C /tmp/bins/ -zxvf /tmp/bins/$GPTEXT_VERSION.tar.gz 
+unzip  /tmp/bins/$GPDB_VERSION.zip -d /usr/local/
+#unzip  /tmp/bins/$GPCC_VERSION.zip -d /tmp/bins/
+#tar -C /tmp/bins/ -zxvf /tmp/bins/$GPTEXT_VERSION.tar.gz 
 
-sed -i 's/more <</cat > \/tmp\/gpdb.lic <</g' /tmp/bins/$GPDB_VERSION.bin
-sed -i 's/agreed=/agreed=1/' /tmp/bins/$GPDB_VERSION.bin
-sed -i 's/pathVerification=/pathVerification=1/' /tmp/bins/$GPDB_VERSION.bin
-sed -i '/defaultInstallPath=/a installPath=${defaultInstallPath}' /tmp/bins/$GPDB_VERSION.bin
+#sed -i 's/more <</cat > \/tmp\/gpdb.lic <</g' /tmp/bins/$GPDB_VERSION.bin
+#sed -i 's/agreed=/agreed=1/' /tmp/bins/$GPDB_VERSION.bin
+#sed -i 's/pathVerification=/pathVerification=1/' /tmp/bins/$GPDB_VERSION.bin
+#sed -i '/defaultInstallPath=/a installPath=${defaultInstallPath}' /tmp/bins/$GPDB_VERSION.bin
 
-sed -i 's/more <</cat > \/tmp\/gpcc.lic <</g' /tmp/bins/$GPCC_VERSION.bin
-sed -i 's/agreed=/agreed=1/' /tmp/bins/$GPCC_VERSION.bin
-sed -i 's/pathVerification=/pathVerification=1/' /tmp/bins/$GPCC_VERSION.bin
-sed -i '/defaultInstallPath=/a installPath=${defaultInstallPath}' /tmp/bins/$GPCC_VERSION.bin
+#sed -i 's/more <</cat > \/tmp\/gpcc.lic <</g' /tmp/bins/$GPCC_VERSION.bin
+#sed -i 's/agreed=/agreed=1/' /tmp/bins/$GPCC_VERSION.bin
+#sed -i 's/pathVerification=/pathVerification=1/' /tmp/bins/$GPCC_VERSION.bin
+#sed -i '/defaultInstallPath=/a installPath=${defaultInstallPath}' /tmp/bins/$GPCC_VERSION.bin
 
-sed -i 's/more <</cat > \/tmp\/gptext.lic <</g' /tmp/bins/$GPTEXT_VERSION.bin
-sed -i 's/AGREE=$/AGREE=1/g' /tmp/bins/$GPTEXT_VERSION.bin
-sed -i 's/read REPLY LEFTOVER/REPLY=y/g' /tmp/bins/$GPTEXT_VERSION.bin
-sed -i "s/read INSTALL_LOC LEFTOVER/INSTALL_LOC=\/usr\/local\/greenplum-text-$GPTEXT_VERSION_NUMBER/g" /tmp/bins/$GPTEXT_VERSION.bin
-sed -i 's/pathVerification=/pathVerification=1/' /tmp/bins/$GPTEXT_VERSION.bin
-sed -i '/defaultInstallPath=/a installPath=${defaultInstallPath}' /tmp/bins/$GPTEXT_VERSION.bin
+#sed -i 's/more <</cat > \/tmp\/gptext.lic <</g' /tmp/bins/$GPTEXT_VERSION.bin
+#sed -i 's/AGREE=$/AGREE=1/g' /tmp/bins/$GPTEXT_VERSION.bin
+#sed -i 's/read REPLY LEFTOVER/REPLY=y/g' /tmp/bins/$GPTEXT_VERSION.bin
+#sed -i "s/read INSTALL_LOC LEFTOVER/INSTALL_LOC=\/usr\/local\/greenplum-text-$GPTEXT_VERSION_NUMBER/g" /tmp/bins/$GPTEXT_VERSION.bin
+#sed -i 's/pathVerification=/pathVerification=1/' /tmp/bins/$GPTEXT_VERSION.bin
+#sed -i '/defaultInstallPath=/a installPath=${defaultInstallPath}' /tmp/bins/$GPTEXT_VERSION.bin
 
-/tmp/bins/$GPDB_VERSION.bin 
-/tmp/bins/$GPCC_VERSION.bin
+#/tmp/bins/$GPDB_VERSION.bin 
+#/tmp/bins/$GPCC_VERSION.bin
 
-echo "Creating Greenplum Text Directories: /usr/local/greenplum-text-$GPTEXT_VERSION_NUMBER"
-mkdir /usr/local/greenplum-text-$GPTEXT_VERSION_NUMBER
-ln -s /usr/local/greenplum-text-$GPTEXT_VERSION_NUMBER /usr/local/greenplum-text
+#echo "Creating Greenplum Text Directories: /usr/local/greenplum-text-$GPTEXT_VERSION_NUMBER"
+#mkdir /usr/local/greenplum-text-$GPTEXT_VERSION_NUMBER
+#ln -s /usr/local/greenplum-text-$GPTEXT_VERSION_NUMBER /usr/local/greenplum-text
 
 chown -R gpadmin /usr/local/greenplum*
 }
@@ -142,8 +142,8 @@ cat > $hostsfile <<HOSTS
 $ip $fqdn $shortname
 HOSTS
 
-echo $fqdn >> /usr/local/greenplum-db/hostsfile
-source /usr/local/greenplum-db/greenplum_path.sh
+echo $fqdn >> /usr/local/greenplum-db-5/hostsfile
+source /usr/local/greenplum-db-5/greenplum_path.sh
 sed -i "s/%HOSTNAME%/$fqdn/" /tmp/configs/gpinitsystem_singlenode
 }
 
@@ -346,7 +346,7 @@ _main() {
 	setup_data_path
 	setup_configs
         setup_gpdb
-        setup_gptext
+#        setup_gptext
 	setup_message
 }
 

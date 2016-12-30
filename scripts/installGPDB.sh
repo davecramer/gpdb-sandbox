@@ -5,9 +5,9 @@ source /tmp/release.properties
 
 
 install_gpdb(){
- source /usr/local/greenplum-db/greenplum_path.sh
- /usr/local/greenplum-db/bin/gpssh-exkeys -f /usr/local/greenplum-db/hostsfile
- gpinitsystem -a -c  /tmp/configs/gpinitsystem_singlenode -h /usr/local/greenplum-db/hostsfile
+ source /usr/local/greenplum-db-5/greenplum_path.sh
+ /usr/local/greenplum-db-5/bin/gpssh-exkeys -f /usr/local/greenplum-db-5/hostsfile
+ gpinitsystem -a -c  /tmp/configs/gpinitsystem_singlenode -h /usr/local/greenplum-db-5/hostsfile
  #cat /home/gpadmin/gpAdminLogs/gpinit*
  echo "INSTALLED"
  # gpstart -a

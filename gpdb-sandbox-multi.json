@@ -1,12 +1,12 @@
 {
 "variables": 
 {
-	"iso_url": "http://mirrors.gigenet.com/centos/6.7/isos/x86_64/CentOS-6.7-x86_64-bin-DVD1.iso",
-	"iso_checksum": "51f90e8ddd2ea199780065eaf75130ad",
+	"iso_url": "http://mirrors.gigenet.com/centos/6/isos/x86_64/CentOS-6.8-x86_64-bin-DVD1.iso",
+	"iso_checksum": "f73c2c4dd333c202ca85ea66120cacdf",
 	"headless": "false",
 	"vm_basename":"PivotalGPDB-Sandbox",
-	"gpversion":"4.3.11.0",
-        "gpbuildstamp":"20161214"
+	"gpversion":"5.0.0",
+        "gpbuildstamp":"20161224"
 
 },
 "builders": [
@@ -14,7 +14,7 @@
 	"name": "aws",
 	"type": "amazon-ebs",
 	"region": "us-east-1",
-	"source_ami": "ami-a87a70c2",
+	"source_ami": "ami-c7d3c2d0",
 	"instance_type": "m4.xlarge",
 	"ssh_username": "gpadmin",
 	"ssh_pty": "true",
@@ -103,7 +103,7 @@
 },
 {
 	"type": "file",
-	"source": "/Users/scottkahler/Software/GREENPLUM/",
+	"source": "/Users/davec/projects/pivotal/packer/",
 	"destination": "/tmp/bins/"
 },
 {
@@ -135,9 +135,7 @@
 	"type": "shell",
 	"execute_command": "echo 'pivotal' | {{ .Vars }} sudo -E -u gpadmin -S sh '{{ .Path }}'",
 	"scripts": [
-		"scripts/installGPDB.sh",
-		"scripts/installExtensions.sh",
-		"scripts/installGPCC.sh"
+		"scripts/installGPDB.sh"
 	]
 },
 {
@@ -146,8 +144,6 @@
 	"environment_vars": "BUILD_NAME={{build_name}}",
 	"scripts": [
 		"scripts/configureGPDB.sh",
-		"scripts/configureGPTEXT.sh",
-		"scripts/installZeppelin.sh",
 		"scripts/cleanup.sh"
 	]
 }
